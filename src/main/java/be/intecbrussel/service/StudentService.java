@@ -26,11 +26,12 @@ public class StudentService {
 
     public void updateStudent(Long id,Student student) {
         EntityManager em = JpaConfig.getEntityManager();
-        student = em.find(Student.class,id);
+
         Optional<Student> optionalStudent = studentRepository.findStudentById(id);
 
-        if(optionalStudent == null) {
+        if(optionalStudent.isEmpty()) {
             em.close();
+            return;
         }
         Student updateStudent = optionalStudent.get();
         updateStudent.updateStudent(student);
@@ -42,7 +43,7 @@ public class StudentService {
         EntityManager em = JpaConfig.getEntityManager();
         Optional<Student> optionalStudent = studentRepository.findStudentById(id);
 
-        if(optionalStudent != null) {
+        if(optionalStudent.isPresent()) {
             studentRepository.Delete(optionalStudent.get().getId());
         }
         em.close();

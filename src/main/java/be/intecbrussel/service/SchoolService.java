@@ -31,7 +31,7 @@ public class SchoolService {
         school = em.find(School.class,id);
         Optional<School> optionalSchool = schoolRepository.findSchoolById(id);
 
-        if(optionalSchool == null) {
+        if(optionalSchool.isEmpty()) {
             em.close();
         }
         School updateStudent = optionalSchool.get();
@@ -44,7 +44,7 @@ public class SchoolService {
         EntityManager em = JpaConfig.getEntityManager();
         Optional<School> optionalSchool = schoolRepository.findSchoolById(id);
 
-        if(optionalSchool != null) {
+        if(optionalSchool.isPresent()) {
             schoolRepository.DeleteSchool(optionalSchool.get().getSchoolId());
         }
         em.close();

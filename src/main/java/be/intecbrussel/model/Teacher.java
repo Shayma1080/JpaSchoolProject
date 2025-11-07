@@ -15,7 +15,7 @@ public class Teacher {
     @Column(name = "lastname")
     private String lastName;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE,CascadeType.REMOVE})
     @JoinColumn(name = "school_id")
     private School school;
 

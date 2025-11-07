@@ -15,6 +15,10 @@ public class StudentRepository {
     }
 
     public Optional<Student> findStudentById(Long id) {
+        if (id == null) {
+            System.out.println("⚠️ ID mag niet null zijn bij het zoeken van een student.");
+            return Optional.empty();
+        }
         EntityManager em = JpaConfig.getEntityManager();
         Student student = em.find(Student.class, id);
         return Optional.ofNullable(student);
@@ -24,7 +28,7 @@ public class StudentRepository {
         EntityManager em = JpaConfig.getEntityManager();
         Student studentobj = new Student();
         em.getTransaction().begin();
-        Student student = em.find(Student.class, id);
+        Student student = em.find(Student.class, studentobj.getId());
         em.getTransaction().commit();
         return Optional.ofNullable(student);
     }

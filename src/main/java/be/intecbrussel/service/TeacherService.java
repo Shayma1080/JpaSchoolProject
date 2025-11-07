@@ -29,7 +29,7 @@ public class TeacherService {
         teacher = em.find(Teacher.class,id);
         Optional<Teacher> optionalStudent = teacherRepository.findTeacherById(id);
 
-        if(optionalStudent == null) {
+        if(optionalStudent.isEmpty()) {
             em.close();
         }
         Teacher updateStudent = optionalStudent.get();
@@ -42,7 +42,7 @@ public class TeacherService {
         EntityManager em = JpaConfig.getEntityManager();
         Optional<Teacher> optionalTeacher = teacherRepository.findTeacherById(id);
 
-        if(optionalTeacher!= null) {
+        if(optionalTeacher.isPresent()) {
             teacherRepository.DeleteTeacher(optionalTeacher.get().getId());
         }
         em.close();
