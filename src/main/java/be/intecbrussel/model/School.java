@@ -5,10 +5,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "School")
-public class School {
+public class School { // inverse : leest maar schrijf niet naar database
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="school_id")
+    @Column(name="school_id") // primary key
     private Long schoolId;
     @Column(name = "school_name")
     private String schoolName;

@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "Student")
-public class Student {
+public class Student { // The owner
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="student_id")
@@ -18,13 +18,13 @@ public class Student {
 
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE,CascadeType.MERGE})
-    @JoinColumn(name = "school_id")
+    @JoinColumn(name = "school_id") // foreign key
     private School school;
 
     @ManyToMany
-    @JoinTable(name = "student_id")
-
+    @JoinTable(name = "student_teacher", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "teacher_id"))
     private List<Teacher> teachers;
+
 
     public Student(String firstName, String lastName, School school, List<Teacher> teachers) {
         this.firstName = firstName;
