@@ -16,7 +16,7 @@ public class StudentRepository {
 
     public Optional<Student> findStudentById(Long id) {
         if (id == null) {
-            System.out.println("⚠️ ID mag niet null zijn bij het zoeken van een student.");
+            //System.out.println("⚠️ ID mag niet null zijn bij het zoeken van een student.");
             return Optional.empty();
         }
         EntityManager em = JpaConfig.getEntityManager();

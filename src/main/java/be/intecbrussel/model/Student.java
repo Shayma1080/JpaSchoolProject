@@ -21,7 +21,7 @@ public class Student { // The owner
     @JoinColumn(name = "school_id") // foreign key
     private School school;
 
-    @ManyToMany
+    @ManyToMany // nieuw table maken voor meerdere combinatie te doen
     @JoinTable(name = "student_teacher", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "teacher_id"))
     private List<Teacher> teachers;
 
